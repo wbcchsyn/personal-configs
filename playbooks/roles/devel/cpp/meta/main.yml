@@ -1,0 +1,3 @@
+dependencies:
+      - { role: devel/gtags }
+      - { role: devel/cmake }
