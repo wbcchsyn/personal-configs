@@ -1,0 +1,37 @@
+# ls
+if [ `uname` = 'Linux' ]; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
+alias la='ls -a'
+alias ll='ls -l'
+alias sl=ls
+
+# less
+alias less='less -R'
+export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
+
+# man
+alias man='man -a -P less'
+
+
+# cd
+alias u='cd ..'
+p() {
+    if [ -z "$1" ]; then
+        popd
+    else
+        for i in `seq $1`; do
+            popd >/dev/null
+        done
+    fi
+}
+
+alias g='pushd'
+
+alias d='dirs -v'
+alias dc='dirs -c'
+
+# Others
+alias info='info --vi-keys'
