@@ -21,6 +21,11 @@
       line='. ~/.cargo/env'
       create=yes
 
+- name: Install rust nightly toolchain
+  become: no
+  command: "{{ ansible_env.HOME }}/.cargo/bin/rustup toolchain install nightly"
+  when: rust_installer.changed
+
 - name: Install rust tools
   become: no
   with_items:
