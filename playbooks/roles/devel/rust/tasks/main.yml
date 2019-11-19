@@ -37,7 +37,7 @@
 - name: Install crates
   become: no
   with_items:
-      - racer --version 2.0.14
+      - racer
   command: "{{ ansible_env.HOME }}/.cargo/bin/cargo install {{ item }}"
   when: rust_installer.changed
 
