@@ -1,0 +1,24 @@
+[user]
+        name = Yoshida Shin
+        email = wbcchsyn@gmail.com
+[core]
+        excludesfile = ~/.gitignore
+	editor = vim
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[fetch]
+	prune = true
+[alias]
+	up = fetch --all
+	sup = submodule update --init --recursive
+        fixup = commit --fixup=HEAD
+        squash = commit --squash=HEAD
+[pull]
+	rebase = true
+[rebase]
+	autosquash = true
+	autostash = true
