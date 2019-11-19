@@ -1,0 +1,38 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Create gopath directory
+  become: no
+  file:
+    path={{ ansible_env.HOME }}/.go
+    state=directory
+
+- name: Setup gopath
+  become: no
+  lineinfile:
+    create=yes
+    path={{ ansible_env.HOME }}/.local_zshrc
+    line='export GOPATH="$HOME/.go"'
+
+- name: Install godef
+  shell: GOPATH={{ ansible_env.HOME }}/.go go get github.com/rogpeppe/godef
+  args:
+    creates: "{{ ansible_env.HOME }}/.go/bin/godef"
+
+- name: Install gocode
+  shell: GOPATH={{ ansible_env.HOME }}/.go go get github.com/nsf/gocode
+  args:
+    creates: "{{ ansible_env.HOME }}/.go/bin/gocode"
+
+- name: Deploy emacs setting file
+  become: no
+  copy:
+    src=.emacs.d
+    dest={{ ansible_env.HOME }}
+
+- name: Make emacs load golang.el
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.emacs.d/loads.el
+      line='(load "~/.emacs.d/init.d/golang")'
+      create=yes
