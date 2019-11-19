@@ -1,0 +1,7 @@
+- name: Install packages
+  become: yes
+  apt:
+    name: ['emacs-mozc', 'emacs-mozc-bin']
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes
