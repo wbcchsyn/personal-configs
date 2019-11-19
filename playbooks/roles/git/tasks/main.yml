@@ -1,0 +1,8 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Deploy config files.
+  become: no
+  with_fileglob:
+      - .git*
+  copy: src={{ item }} dest={{ ansible_env.HOME }}

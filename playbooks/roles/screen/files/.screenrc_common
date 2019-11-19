@@ -1,0 +1,21 @@
+defflow off
+startup_message off
+maptimeout 0
+
+defscrollback 4096
+
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+bind & kill
+bind L redisplay
+
+bind - split
+bind | split -v
+
+bind s split
+bind v split -v
+
+bind x echo "lockscreen command is disabled."

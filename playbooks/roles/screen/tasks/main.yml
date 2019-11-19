@@ -1,0 +1,28 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Deploy config files.
+  become: no
+  with_fileglob:
+      - .screenrc*
+  copy: src={{ item }} dest={{ ansible_env.HOME }}
+
+- name: Deploy screen aliases
+  become: no
+  with_items:
+    - sa
+    - sb
+  copy:
+    src={{ item }}
+    dest={{ ansible_env.HOME }}/bin/{{ item }}
+    mode=0644
+
+- name: Enable bash to call command sa and sb
+  become: no
+  with_items:
+    - sa
+    - sb
+  lineinfile:
+    dest={{ ansible_env.HOME }}/.local_bashrc
+    line='. ~/bin/{{ item }}'
+    create=yes

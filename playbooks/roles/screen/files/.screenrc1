@@ -1,0 +1,5 @@
+escape ^Tt
+caption splitonly "%?%F%{=b mw}%:%{= bw}%?%n %t"
+hardstatus alwayslastline "%{=b bw}%H    %-w %{=b mw}%n %t%{=b bw}%+w%="
+shell -zsh
+source ~/.screenrc_common

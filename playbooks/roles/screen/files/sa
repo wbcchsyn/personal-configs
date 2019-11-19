@@ -1,0 +1,7 @@
+sa() {
+
+    (
+        test -n "$VIRTUAL_ENV" && deactivate
+        screen -c ~/.screenrc0 -dRR "$session_name"
+    )
+}
