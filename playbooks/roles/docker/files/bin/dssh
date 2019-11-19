@@ -1,0 +1,32 @@
+#!/bin/sh
+
+help() {
+    echo "USAGE: $0 [ssh options] <UUID | NAME> [-- command]" >&2
+    exit 1
+}
+
+SSH_OPS="-Y -A -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+HOST=""
+while [ "$1" != "" ]; do
+    if [ "$1" = '--' ]; then
+        shift
+        break
+    fi
+
+    SSH_OPS="$SSH_OPS $HOST"
+    HOST="$1"
+    shift
+done
+
+if [ -z "$HOST" ]; then
+    help
+fi
+
+IP=$(`dirname $0`/dip "$HOST") || exit "$?"
+
+tmux rename-window "$HOST"
+
+ssh $SSH_OPS $IP $@
+
+tmux setw automatic-rename on
+

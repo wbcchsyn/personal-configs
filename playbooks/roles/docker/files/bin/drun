@@ -1,0 +1,36 @@
+#!/bin/sh
+
+help() {
+    cat <<EOS >&2
+USAGE: $0 TAG NAME [OPTIONS]
+
+run the following command
+    docker run -d                                \\
+               -h <NAME>                         \\
+               --name <NAME>                     \\
+               -v /shared:/shared                \\
+               --security-opt seccomp=unconfined \\
+               [OPTIONS]                         \\
+               <TAG>
+EOS
+    exit 1
+}
+
+if [ -z "$2" ]; then
+    help
+fi
+
+TAG="$1"
+shift
+
+NAME="$1"
+shift
+
+OPTIONS="-d -h $NAME --name $NAME -v /shared:/shared --security-opt seccomp=unconfined"
+
+while [ ! -z "$1" ]; do
+    OPTIONS="$OPTIONS $1"
+    shift
+done
+
+docker run $OPTIONS "$TAG"

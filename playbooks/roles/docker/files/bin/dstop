@@ -1,0 +1,4 @@
+#!/bin/sh
+
+docker ps | awk '{print $1}' | sed '1d' | xargs docker stop
+docker volume ls -qf dangling=true | xargs -r docker volume rm

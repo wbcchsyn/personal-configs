@@ -1,0 +1,20 @@
+#!/bin/sh
+
+help() {
+    echo "USAGE: $0 <UUID | NAME>" >&2
+    exit 1
+}
+
+if [ -z "$1" ]; then
+    help
+fi
+
+HOST="$1"
+
+IP=$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' "$HOST")
+if [ -z "$IP" ]; then
+    echo "No such container is." >&2
+    help
+fi
+
+echo "$IP"
