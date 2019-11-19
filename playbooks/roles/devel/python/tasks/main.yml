@@ -1,0 +1,49 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Create virtualenv directory
+  become: no
+  file: path={{ ansible_env.HOME }}/.virtualenv state=directory
+
+- name: Install default packages for python3
+  become: no
+  pip:
+    name: [
+      'wheel',
+      'ipython',
+      'tox',
+      'pylint',
+      'pep8',
+      'pyflakes',
+      'doc8',
+      'pytest'
+      ]
+    virtualenv_command: pyvenv
+    virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
+
+- name: Set default virtualenv in .local_zshrc
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.local_zshrc
+      line='test -z "$VIRTUAL_ENV" && source ~/.virtualenv/python3/bin/activate'
+      create=yes
+
+- name: Deploy emacs setting file
+  become: no
+  copy:
+      src=.emacs.d
+      dest={{ ansible_env.HOME }}
+
+- name: Deploy python related commands
+  become: no
+  copy:
+      src=bin
+      dest={{ ansible_env.HOME }}
+      mode=0755
+
+- name: Make emacs load python.el
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.emacs.d/loads.el
+      line='(load "~/.emacs.d/init.d/python")'
+      create=yes

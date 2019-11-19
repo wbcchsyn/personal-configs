@@ -1,0 +1,6 @@
+(setq make-backup-files nil)
+(setq version-control nil)
+(setq kept-old-versions 2)
+(setq kept-new-versions 2)
+(setq delete-old-versions nil)
+(setq auto-save-default nil)
