@@ -1,0 +1,7 @@
+- name: Install Packages.
+  become: yes
+  apt:
+    name: ['task-xfce-desktop']
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes
