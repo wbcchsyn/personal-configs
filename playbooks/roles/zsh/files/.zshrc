@@ -27,3 +27,5 @@ for f in .shellrc .aliasrc .local_zshrc; do
         . "$HOME/$f"
     fi
 done
+
+PATH="$HOME/zsh_bin:$PATH"
