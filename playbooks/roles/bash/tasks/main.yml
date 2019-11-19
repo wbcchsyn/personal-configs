@@ -1,0 +1,30 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Deploy .shellrc
+  become: no
+  copy:
+      dest={{ ansible_env.HOME }}/.shellrc
+      src=.shellrc
+
+- name: Include .shellrc
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.bashrc
+      line='test -f "$HOME/.shellrc" && . "$HOME/.shellrc"'
+      create=yes
+
+- name: Include .local_bashrc
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.bashrc
+      line='test -f "$HOME/.local_bashrc" && . "$HOME/.local_bashrc"'
+      create=yes
+
+- name: Create directory 'tmp' in HOME
+  become: no
+  file: path={{ ansible_env.HOME }}/tmp state=directory
+
+- name: Create directory 'bin' in HOME
+  become: no
+  file: path={{ ansible_env.HOME }}/bin state=directory
