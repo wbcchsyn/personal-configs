@@ -23,10 +23,4 @@ if [ -z "$HOST" ]; then
 fi
 
 IP=$(`dirname $0`/dip "$HOST") || exit "$?"
-
-tmux rename-window "$HOST"
-
-ssh $SSH_OPS $IP $@
-
-tmux setw automatic-rename on
-
+ssh $SSH_OPS "$IP" $@
