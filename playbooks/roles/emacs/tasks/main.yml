@@ -31,5 +31,5 @@
   become: no
   copy:
       dest={{ ansible_env.HOME }}
-      src=zsh_bin
+      src=bin
       mode=0755
