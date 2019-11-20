@@ -6,4 +6,3 @@
       dest={{ ansible_env.HOME }}/.local_zshrc
       line='PATH=/snap/bin:$PATH'
       create=yes
-

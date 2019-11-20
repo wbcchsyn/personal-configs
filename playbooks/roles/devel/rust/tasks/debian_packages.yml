@@ -1,7 +1,7 @@
-- name: Install Packages.
+- name: Install build dependencies
   become: yes
   apt:
-    name: ['build-essential']
+    name: ['curl', 'gcc']
     state: present
     cache_valid_time: 3600
     update_cache: yes

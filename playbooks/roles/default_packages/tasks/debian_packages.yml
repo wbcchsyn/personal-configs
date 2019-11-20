@@ -1,4 +1,4 @@
-- name: Install Packages.
+- name: Install Packages
   become: yes
   apt:
     name: [

@@ -1,2 +1,7 @@
-- include: debian_packages.yml
-  when: ansible_os_family == 'Debian'
+- name: Create directories in HOME
+  become: no
+  with_items:
+    - src
+    - bin
+    - tmp
+  file: path={{ ansible_env.HOME }}/{{ item }} state=directory

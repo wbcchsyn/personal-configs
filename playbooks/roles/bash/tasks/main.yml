@@ -20,11 +20,3 @@
       dest={{ ansible_env.HOME }}/.bashrc
       line='test -f "$HOME/.local_bashrc" && . "$HOME/.local_bashrc"'
       create=yes
-
-- name: Create directory 'tmp' in HOME
-  become: no
-  file: path={{ ansible_env.HOME }}/tmp state=directory
-
-- name: Create directory 'bin' in HOME
-  become: no
-  file: path={{ ansible_env.HOME }}/bin state=directory

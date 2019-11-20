@@ -4,17 +4,16 @@
 - name: Download rustup installer
   become: no
   get_url:
-    dest={{ ansible_env.HOME }}/bin/rustup-init.sh
+    dest={{ ansible_env.HOME }}/src/rustup-init.sh
     mode=0644
     url=https://sh.rustup.rs
-  register: rust_installer
 
 - name: Install rustup
   become: no
-  command: bash {{ ansible_env.HOME }}/bin/rustup-init.sh -y
-  when: rust_installer.changed
+  command: bash {{ ansible_env.HOME }}/src/rustup-init.sh -y
+    creates={{ ansible_env.HOME }}/.cargo/env
 
-- name: Enable zsh use cargo
+- name: Enable zsh to use cargo
   become: no
   lineinfile:
       dest={{ ansible_env.HOME }}/.local_zshrc
@@ -23,23 +22,32 @@
 
 - name: Install rust nightly toolchain
   become: no
-  command: "{{ ansible_env.HOME }}/.cargo/bin/rustup toolchain install nightly"
-  when: rust_installer.changed
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup toolchain install nightly"
+    creates: "{{ ansible_env.HOME }}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu"
 
-- name: Install rust tools
+- name: Install rustfmt
+  become: no
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rustfmt --toolchain nightly"
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustfmt"
+
+- name: Install rust src
   become: no
   with_items:
-      - rustfmt --toolchain stable-x86_64-unknown-linux-gnu
-      - rust-src
-  command: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add {{ item }}"
-  when: rust_installer.changed
+    - stable
+    - nightly
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rust-src --toolchain {{ item }}"
+    creates: "{{ ansible_env.HOME }}/.rustup/toolchains/{{ item }}-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"
 
 - name: Install crates
   become: no
   with_items:
-      - racer
-  command: "{{ ansible_env.HOME }}/.cargo/bin/cargo install {{ item }}"
-  when: rust_installer.changed
+    - racer
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo +nightly install {{ item }}"
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item }}"
 
 - name: Deploy emacs setting file
   become: no
