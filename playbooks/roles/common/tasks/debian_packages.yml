@@ -2,13 +2,11 @@
   become: yes
   apt:
     name: [
-      'locales',
       'wget',
       'curl',
       'openssh-client',
       'telnet',
       'dnsutils',
-      'vim',
       'less',
       'source-highlight',
       'info',

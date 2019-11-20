@@ -1,3 +1,9 @@
 - hosts: all
   roles:
-      - common
+    - common
+    - locale
+    - vim
+  vars:
+    locale:
+      locale: en_US.UTF-8
+      encoding: UTF-8

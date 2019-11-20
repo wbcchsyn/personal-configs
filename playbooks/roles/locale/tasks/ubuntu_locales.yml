@@ -1,0 +1,7 @@
+- name: Enable to use locale
+  become: yes
+  command: locale-gen {{ locale.locale }}
+
+- name: Set default LANG
+  become: yes
+  command: update-locale LANG={{ locale.locale }}
