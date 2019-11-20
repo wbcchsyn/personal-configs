@@ -6,9 +6,3 @@
 
 - include: ubuntu_locales.yml
   when: ansible_distribution == 'Ubuntu' and ansible_env.LANG != 'en_US.UTF-8'
-
-- name: Deploy .vimrc
-  become: no
-  copy:
-      dest={{ ansible_env.HOME }}/.vimrc
-      src=.vimrc
