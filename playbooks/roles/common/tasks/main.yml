@@ -1,6 +1,3 @@
-- include: debian_packages.yml
-  when: ansible_os_family == 'Debian'
-
 - name: Create directories in HOME
   become: no
   with_items:
