@@ -1,10 +1,4 @@
-- name: Check whether vscode is already installed or not
-  become: no
-  command: snap list code
-  register: snap_list_code
-  ignore_errors: True
-
-- name: Install vscode from snap
+- name: Install vscode using snap
   become: yes
   command: snap install code --classic
-  when: snap_list_code is failed
+    creates=/snap/bin/code
