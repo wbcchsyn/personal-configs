@@ -28,4 +28,4 @@ for f in .shellrc .aliasrc .local_zshrc; do
     fi
 done
 
-PATH="$HOME/zsh_bin:$PATH"
+echo "$PATH" | grep -q "$HOME/zsh_bin" || PATH="$HOME/zsh_bin:$PATH"
