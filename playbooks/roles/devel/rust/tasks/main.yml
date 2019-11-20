@@ -4,14 +4,14 @@
 - name: Download rustup installer
   become: no
   get_url:
-    dest={{ ansible_env.HOME }}/bin/rustup-init.sh
+    dest={{ ansible_env.HOME }}/src/rustup-init.sh
     mode=0644
     url=https://sh.rustup.rs
   register: rust_installer
 
 - name: Install rustup
   become: no
-  command: bash {{ ansible_env.HOME }}/bin/rustup-init.sh -y
+  command: bash {{ ansible_env.HOME }}/src/rustup-init.sh -y
   when: rust_installer.changed
 
 - name: Enable zsh use cargo
