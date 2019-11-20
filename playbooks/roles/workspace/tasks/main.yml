@@ -2,6 +2,5 @@
   become: no
   with_items:
     - src
-    - bin
     - tmp
   file: path={{ ansible_env.HOME }}/{{ item }} state=directory
