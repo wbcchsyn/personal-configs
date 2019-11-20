@@ -2,7 +2,7 @@
   when: ansible_os_family == 'Debian'
 
 - include: debian_locales.yml
-  when: ansible_distribution == 'Debian' and ansible_env.LANG != 'en_US.UTF-8'
+  when: ansible_distribution == 'Debian' and ansible_env.LANG != locale.locale
 
 - include: ubuntu_locales.yml
-  when: ansible_distribution == 'Ubuntu' and ansible_env.LANG != 'en_US.UTF-8'
+  when: ansible_distribution == 'Ubuntu' and ansible_env.LANG != locale.locale

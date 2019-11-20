@@ -1,7 +1,7 @@
-- name: Enable to use en_US.UTF-8
+- name: Enable to use locale
   become: yes
-  command: locale-gen en_US.UTF-8
+  command: locale-gen {{ locale.locale }}
 
-- name: Set default LANG=en_US.UTF-8
+- name: Set default LANG
   become: yes
-  command: update-locale LANG=en_US.UTF-8
+  command: update-locale LANG={{ locale.locale }}
