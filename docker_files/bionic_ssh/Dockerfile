@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 COPY sources.list /etc/apt/sources.list
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && \
-    apt-get install -y openssh-server sudo python-apt aptitude && \
+    apt-get install -y openssh-server sudo python3-apt python3-certifi aptitude && \
     apt-get -y autoremove && \
     apt-get -y clean
 
