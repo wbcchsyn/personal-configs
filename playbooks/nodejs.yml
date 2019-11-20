@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - devel/nodejs
+  vars:
+    nodejs:
+      version: v12.13.1

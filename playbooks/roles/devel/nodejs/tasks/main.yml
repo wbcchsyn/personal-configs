@@ -1,0 +1,25 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Download nodejs source
+  become: no
+  unarchive:
+    dest={{ ansible_env.HOME }}/src
+    creates={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
+    remote_src=yes
+    src=https://nodejs.org/dist/v12.13.1/node-{{ nodejs.version }}.tar.gz
+
+- name: Compile nodejs
+  become: no
+  shell: ./configure && make -j {{ ansible_processor_vcpus }} && make doc
+    chdir={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
+    creates={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}/out/doc
+
+- name: Install nodejs
+  become: yes
+  command: make install
+    chdir={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
+    creates=/usr/local/bin/node
+
+- include: debian_packages_clean.yml
+  when: ansible_os_family == 'Debian'
