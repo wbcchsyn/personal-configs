@@ -2,7 +2,6 @@
   become: yes
   apt:
     name: [
-      'locales',
       'wget',
       'curl',
       'openssh-client',
