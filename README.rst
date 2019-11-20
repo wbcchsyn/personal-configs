@@ -14,16 +14,9 @@ Host (Debian sid)
 Guest
 *****
 
-Debian (sid and buster)
-=======================
+Debian (sid/buster), Ubuntu
+===========================
 
 .. code-block:: shell
 
-   $ sudo apt install aptitude python3-apt
-
-Ubuntu (bionic)
-===============
-
-.. code-block:: shell
-
-   $ sudo apt install aptitude python-apt
+   $ sudo apt install aptitude python3-apt python3-certifi
