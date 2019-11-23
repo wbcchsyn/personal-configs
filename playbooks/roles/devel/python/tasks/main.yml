@@ -14,6 +14,7 @@
       'tox',
       'pylint',
       'pep8',
+      'py-autopep8',
       'pyflakes',
       'doc8',
       'pytest'
