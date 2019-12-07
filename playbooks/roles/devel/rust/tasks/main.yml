@@ -20,23 +20,16 @@
       line='. ~/.cargo/env'
       create=yes
 
-- name: Install rust nightly toolchain
-  become: no
-  command:
-    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup toolchain install nightly"
-    creates: "{{ ansible_env.HOME }}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu"
-
 - name: Install rustfmt
   become: no
   command:
-    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rustfmt --toolchain nightly"
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rustfmt"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/rustfmt"
 
 - name: Install rust src
   become: no
   with_items:
     - stable
-    - nightly
   command:
     cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rust-src --toolchain {{ item }}"
     creates: "{{ ansible_env.HOME }}/.rustup/toolchains/{{ item }}-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"
@@ -46,7 +39,7 @@
   with_items:
     - racer
   command:
-    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo +nightly install {{ item }}"
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo install {{ item }}"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item }}"
 
 - name: Deploy emacs setting file
