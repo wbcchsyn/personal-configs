@@ -1,14 +1,21 @@
 sb() {
 
     (
-        test -n "$VIRTUAL_ENV" && deactivate
-        test -n "$1" && cd "$1"
+        if [ -n "$1" ]; then
+            if [ -d "$1" ]; then
+                cd "$1"
+            else
+                echo "$1: No such directory is." >&2
+                exit 1
+            fi
+        fi
 
         local work_dir=`pwd`
         local b="$(basename "$work_dir")"
         local d="$(dirname "$work_dir" | sed 's!/!\\!g')"
-
         local session_name="$b - $d"
+
+        test -n "$VIRTUAL_ENV" && deactivate
         screen -c ~/.screenrc1 -dRR "$session_name"
     )
 }
