@@ -22,7 +22,7 @@ PROMPT="%n@%F{red}%m%F{default}:%~%1(v|%F{green}%1v%f|)%F{default}%# "
 LANG=en_US.UTF-8
 export LANG
 
-for f in .shellrc .aliasrc .local_zshrc; do
+for f in .shellrc .aliasrc .local_zshrc, .localrc; do
     if [ -f "$HOME/$f" ]; then
         . "$HOME/$f"
     fi

@@ -7,16 +7,13 @@
       dest={{ ansible_env.HOME }}/.shellrc
       src=.shellrc
 
-- name: Include .shellrc
+- name: Include .shellrc, .localrc, and .local_bashrc
   become: no
+  with_items:
+    - .shellrc
+    - .localrc
+    - .local_bashrc
   lineinfile:
       dest={{ ansible_env.HOME }}/.bashrc
-      line='test -f "$HOME/.shellrc" && . "$HOME/.shellrc"'
-      create=yes
-
-- name: Include .local_bashrc
-  become: no
-  lineinfile:
-      dest={{ ansible_env.HOME }}/.bashrc
-      line='test -f "$HOME/.local_bashrc" && . "$HOME/.local_bashrc"'
+      line='test -f "$HOME/{{ item }}" && . "$HOME/{{ item }}"'
       create=yes
