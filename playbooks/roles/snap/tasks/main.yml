@@ -3,6 +3,6 @@
 
 - name: Add /snap/bin to PATH
   lineinfile:
-      dest={{ ansible_env.HOME }}/.local_zshrc
+      dest={{ ansible_env.HOME }}/.localrc
       line='PATH=/snap/bin:$PATH'
       create=yes
