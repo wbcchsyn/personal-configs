@@ -34,12 +34,18 @@
     cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rust-src --toolchain {{ item }}"
     creates: "{{ ansible_env.HOME }}/.rustup/toolchains/{{ item }}-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"
 
-- name: Install crates
+- name: Install nightly toolchain for racer
+  become: no
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup toolchain install nightly"
+    creates: "{{ ansible_env.HOME }}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu"
+
+- name: Install racer
   become: no
   with_items:
     - racer
   command:
-    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo install {{ item }}"
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo +nightly install {{ item }}"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item }}"
 
 - name: Deploy emacs setting file
