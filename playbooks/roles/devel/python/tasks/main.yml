@@ -22,10 +22,10 @@
     virtualenv_command: pyvenv
     virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
 
-- name: Set default virtualenv in .local_zshrc
+- name: Set default virtualenv in .localrc
   become: no
   lineinfile:
-      dest={{ ansible_env.HOME }}/.local_zshrc
+      dest={{ ansible_env.HOME }}/.localrc
       line='test -z "$VIRTUAL_ENV" && source ~/.virtualenv/python3/bin/activate'
       create=yes
 

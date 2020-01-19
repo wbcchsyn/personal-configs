@@ -17,6 +17,6 @@
 - name: Set environment variable to treat .h files as cpp source code.
   become: no
   lineinfile:
-      dest={{ ansible_env.HOME }}/.local_zshrc
+      dest={{ ansible_env.HOME }}/.localrc
       line='export GTAGSFORCECPP='
       create=yes

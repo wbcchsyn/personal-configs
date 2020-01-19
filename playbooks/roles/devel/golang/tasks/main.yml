@@ -11,7 +11,7 @@
   become: no
   lineinfile:
     create=yes
-    path={{ ansible_env.HOME }}/.local_zshrc
+    path={{ ansible_env.HOME }}/.localrc
     line='export GOPATH="$HOME/.go"'
 
 - name: Install godef

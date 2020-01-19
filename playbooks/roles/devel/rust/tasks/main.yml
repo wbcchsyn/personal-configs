@@ -16,7 +16,7 @@
 - name: Enable zsh to use cargo
   become: no
   lineinfile:
-      dest={{ ansible_env.HOME }}/.local_zshrc
+      dest={{ ansible_env.HOME }}/.localrc
       line='. ~/.cargo/env'
       create=yes
 
