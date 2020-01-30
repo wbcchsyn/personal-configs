@@ -1,7 +1,7 @@
 - name: Install Packages.
   become: yes
   apt:
-    name: ['texlive', 'texlive-lang-japanese', 'texinfo', 'texlive-pictures']
+    name: ['texlive', 'texlive-lang-japanese', 'texinfo', 'texlive-pictures', 'texlive-latex-extra']
     state: present
     cache_valid_time: 3600
     update_cache: yes
