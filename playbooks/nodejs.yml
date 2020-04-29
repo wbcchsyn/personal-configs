@@ -3,4 +3,4 @@
     - devel/nodejs
   vars:
     nodejs:
-      version: v12.13.1
+      version: 14.x

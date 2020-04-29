@@ -1,25 +1,18 @@
-- include: debian_packages.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Download nodejs source
+- name: Download setup script
   become: no
-  unarchive:
-    dest={{ ansible_env.HOME }}/src
-    creates={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
-    remote_src=yes
-    src=https://nodejs.org/dist/v12.13.1/node-{{ nodejs.version }}.tar.gz
+  get_url:
+    url: https://deb.nodesource.com/setup_{{ nodejs.version }}
+    dest: "{{ ansible_env.HOME }}/src/setup_{{ nodejs.version }}"
 
-- name: Compile nodejs
-  become: no
-  shell: ./configure && make -j {{ ansible_processor_vcpus }} && make doc
-    chdir={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
-    creates={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}/out/doc
+- name: Run setup script
+  become: yes
+  command:
+    bash {{ ansible_env.HOME }}/src/setup_{{ nodejs.version }}
 
 - name: Install nodejs
   become: yes
-  command: make install
-    chdir={{ ansible_env.HOME }}/src/node-{{ nodejs.version }}
-    creates=/usr/local/bin/node
-
-- include: debian_packages_clean.yml
-  when: ansible_os_family == 'Debian'
+  apt:
+    name: nodejs
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes
