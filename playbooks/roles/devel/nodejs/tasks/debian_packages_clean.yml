@@ -1,9 +1,0 @@
-- name: Uninstall python2
-  become: yes
-  apt:
-    name: 'python2.7-minimal'
-    state: absent
-    cache_valid_time: 3600
-    update_cache: yes
-    purge: yes
-  when: install_python2.changed
