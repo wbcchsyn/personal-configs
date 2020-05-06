@@ -1,6 +1,13 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
+- name: Deploy python related commands
+  become: no
+  copy:
+      src=bin
+      dest={{ ansible_env.HOME }}
+      mode=0755
+
 - name: Create virtualenv directory
   become: no
   file: path={{ ansible_env.HOME }}/.virtualenv state=directory
@@ -19,7 +26,7 @@
       'doc8',
       'pytest'
       ]
-    virtualenv_command: pyvenv
+    virtualenv_command: "{{ ansible_env.HOME }}/bin/pyvenv"
     virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
 
 - name: Set default virtualenv in .localrc
@@ -34,13 +41,6 @@
   copy:
       src=.emacs.d
       dest={{ ansible_env.HOME }}
-
-- name: Deploy python related commands
-  become: no
-  copy:
-      src=bin
-      dest={{ ansible_env.HOME }}
-      mode=0755
 
 - name: Make emacs load python.el
   become: no
