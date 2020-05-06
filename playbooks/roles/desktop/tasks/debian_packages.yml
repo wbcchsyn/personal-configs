@@ -1,7 +1,7 @@
 - name: Install Packages.
   become: yes
   apt:
-    name: ['task-xfce-desktop']
+    name: ['task-gnome-desktop', 'fcitx-mozc']
     state: present
     cache_valid_time: 3600
     update_cache: yes
