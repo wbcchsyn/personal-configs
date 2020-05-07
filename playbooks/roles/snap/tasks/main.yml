@@ -4,5 +4,5 @@
 - name: Add /snap/bin to PATH
   lineinfile:
       dest={{ ansible_env.HOME }}/.localrc
-      line='PATH=/snap/bin:$PATH'
+      line='echo "$PATH" | grep -q \'/snap/bin\' || PATH=/snap/bin:"$PATH"'
       create=yes
