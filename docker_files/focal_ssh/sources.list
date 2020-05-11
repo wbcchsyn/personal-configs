@@ -1,0 +1,20 @@
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal main restricted
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal main restricted
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates main restricted
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates main restricted
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal universe
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal universe
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates universe
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates universe
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal multiverse
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal multiverse
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates multiverse
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-updates multiverse
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-backports main restricted universe multiverse
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-backports main restricted universe multiverse
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security main restricted
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security main restricted
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security universe
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security universe
+deb http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security multiverse
+# deb-src http://www.ftp.ne.jp/Linux/packages/ubuntu/archive/ focal-security multiverse
