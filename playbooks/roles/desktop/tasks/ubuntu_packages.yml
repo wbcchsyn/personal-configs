@@ -1,7 +1,7 @@
 - name: Install Packages.
   become: yes
   apt:
-    name: ['ubuntu-desktop', 'fcitx-mozc']
+    name: ['ubuntu-desktop-minimal', 'fcitx-mozc']
     state: present
     cache_valid_time: 3600
     update_cache: yes
