@@ -1,6 +1,13 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
+- name: Create /shared directory
+  become: yes
+  file:
+    path: /shared
+    state: directory
+    mode: 01777
+
 - name: Add user to docker group
   become: yes
   user:
