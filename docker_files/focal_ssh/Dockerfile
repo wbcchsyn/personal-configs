@@ -10,6 +10,9 @@ RUN apt-get update && \
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 RUN mkdir /var/run/sshd
 
+COPY sshd_hostkeys/* /etc/ssh/
+RUN chmod 0700 /etc/ssh/ssh_host_ecdsa_key
+
 RUN adduser wbcchsyn
 
 COPY sudo_wbcchsyn /etc/sudoers.d/wbcchsyn
