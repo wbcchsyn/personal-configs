@@ -1,22 +1,31 @@
-#####
-Setup
-#####
+############
+Docker files
+############
 
-*****************
-Host (Debian sid)
-*****************
+Building docker images to run sshd daemon.
+
+.. warning::
+
+   The images exposes the sshd host keys in this git repository.
+
+   Don't access to the containers from internet.
+
+################
+Ansible playbook
+################
+
+*****************************
+Host Setup (Debian or Ubuntu)
+*****************************
 
 .. code-block:: shell
 
-   $ sudo apt install ansible python3-distutils
+   $ sudo apt install ansible
 
-*****
-Guest
-*****
-
-Debian (sid/buster), Ubuntu
-===========================
+******************************
+Guest Setup (Debian or Ubuntu)
+******************************
 
 .. code-block:: shell
 
-   $ sudo apt install aptitude python3-apt python3-certifi
+   $ sudo apt install python3-apt
