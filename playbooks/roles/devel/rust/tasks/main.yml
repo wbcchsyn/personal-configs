@@ -34,6 +34,12 @@
     cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rust-src --toolchain {{ item }}"
     creates: "{{ ansible_env.HOME }}/.rustup/toolchains/{{ item }}-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"
 
+- name: Deploy .cargo/config
+  become: no
+  copy:
+    src=.cargo
+    dest={{ ansible_env.HOME }}
+
 - name: Deploy emacs setting file
   become: no
   copy:
