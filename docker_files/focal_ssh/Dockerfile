@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 COPY sources.list /etc/apt/sources.list
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && \
+    apt-get upgrade && \
     apt-get install -y openssh-server sudo python3-apt && \
     apt-get -y autoremove && \
     apt-get -y clean
