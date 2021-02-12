@@ -39,16 +39,3 @@
   copy:
     src=.cargo
     dest={{ ansible_env.HOME }}
-
-- name: Deploy emacs setting file
-  become: no
-  copy:
-      src=.emacs.d
-      dest={{ ansible_env.HOME }}
-
-- name: Make emacs load rust.el
-  become: no
-  lineinfile:
-      dest={{ ansible_env.HOME }}/.emacs.d/loads.el
-      line='(load "~/.emacs.d/init.d/rust")'
-      create=yes
