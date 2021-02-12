@@ -23,16 +23,3 @@
   shell: GOPATH={{ ansible_env.HOME }}/.go go get github.com/nsf/gocode
   args:
     creates: "{{ ansible_env.HOME }}/.go/bin/gocode"
-
-- name: Deploy emacs setting file
-  become: no
-  copy:
-    src=.emacs.d
-    dest={{ ansible_env.HOME }}
-
-- name: Make emacs load golang.el
-  become: no
-  lineinfile:
-      dest={{ ansible_env.HOME }}/.emacs.d/loads.el
-      line='(load "~/.emacs.d/init.d/golang")'
-      create=yes
