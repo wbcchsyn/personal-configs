@@ -1,8 +1,17 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
-- include: debian_locales.yml
-  when: ansible_distribution == 'Debian' and ansible_env.LANG != locale.locale
+- name: Change /etc/locale.gen
+  become: yes
+  replace:
+    regexp='^\s*#\s*{{ locale.locale }} {{ locale.encoding }}\s*$'
+    replace="{{ locale.locale }} {{locale.encoding}}"
+    dest=/etc/locale.gen
 
-- include: ubuntu_locales.yml
-  when: ansible_distribution == 'Ubuntu' and ansible_env.LANG != locale.locale
+- name: Enable to use locale
+  become: yes
+  command: locale-gen {{ locale.locale }}
+
+- name: Set default LANG
+  become: yes
+  command: update-locale LANG={{ locale.locale }}
