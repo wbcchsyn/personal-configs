@@ -8,3 +8,4 @@
     locale:
       locale: en_US.UTF-8
       encoding: UTF-8
+      timezone: Asia/Tokyo
