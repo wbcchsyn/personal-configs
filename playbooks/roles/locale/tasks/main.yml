@@ -15,3 +15,7 @@
 - name: Set default LANG
   become: yes
   command: update-locale LANG={{ locale.locale }}
+
+- name: Set timezone
+  become: yes
+  command: timedatectl set-timezone Asia/Tokyo
