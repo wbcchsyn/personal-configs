@@ -1,5 +1,4 @@
 (prefer-coding-system 'utf-8-unix)
-(setq require-final-newline t)
 (define-key global-map "\C-x\C-j" 'toggle-input-method)
 
 (prefer-coding-system 'utf-8)
