@@ -2,3 +2,12 @@
   become: yes
   command: snap install code --classic
     creates=/snap/bin/code
+
+- name: Deploy vscode setting file
+  become: no
+  with_items:
+    - .config
+  copy:
+    src={{ item }}
+    dest={{ ansible_env.HOME }}
+    force=no
