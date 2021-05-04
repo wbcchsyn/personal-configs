@@ -1,0 +1,39 @@
+- name: Add user
+  become: yes
+  user:
+    create_home: yes
+    name: "{{ user.name }}"
+  register: add_user_add_user
+
+- name: Create sudoers file
+  become: yes
+  lineinfile:
+    path: "/etc/sudoers.d/{{ user.name }}"
+    line: "{{ user.name }} ALL=(ALL:ALL) NOPASSWD: ALL"
+    create: yes
+    owner: root
+    group: root
+    mode: 0440
+  when: user.sudoer
+
+- name: Create .ssh directory
+  become: yes
+  file:
+    path: "{{ add_user_add_user['home'] }}/.ssh"
+    owner: "{{ user.name }}"
+    group: "{{ add_user_add_user['group'] }}"
+    mode: 0755
+    state: directory
+  when: user.pubkeys
+
+- name: Set authorized_keys
+  become: yes
+  with_items: "{{ user.pubkeys }}"
+  lineinfile:
+    path: "{{ add_user_add_user['home'] }}/.ssh/authorized_keys"
+    create: yes
+    owner: "{{ user.name }}"
+    group: "{{ add_user_add_user['group'] }}"
+    mode: 0644
+    line: "{{ item }}"
+  when: user.pubkeys

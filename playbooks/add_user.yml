@@ -1,0 +1,9 @@
+- hosts: all
+  roles:
+    - add_user
+  vars:
+    user:
+      name: wbcchsyn
+      sudoer: yes
+      pubkeys:
+        - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBO9dOW//t2klasxGKb2qZin74NVU8WnXekJPeCoZMiGwJDnkMWoyP7I6sKN6mP+roY1AV465u34ptHrJisya6AE= wbcch@LAPTOP-8UU35NJE
