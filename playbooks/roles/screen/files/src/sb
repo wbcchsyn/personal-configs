@@ -10,11 +10,7 @@ sb() {
             fi
         fi
 
-        local work_dir=`pwd`
-        local b="$(basename "$work_dir")"
-        local d="$(dirname "$work_dir" | sed 's!/!\\!g')"
-        local session_name="$b - $d"
-
+        session_name="$$ sb"
         test -n "$VIRTUAL_ENV" && deactivate
         screen -c ~/.screenrc1 -dRR "$session_name"
     )
