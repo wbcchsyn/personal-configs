@@ -1,6 +1,7 @@
 sa() {
     (
         test -n "$VIRTUAL_ENV" && deactivate
+        cd
         screen -c ~/.screenrc0
     )
 }
