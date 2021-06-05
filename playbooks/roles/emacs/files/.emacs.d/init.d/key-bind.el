@@ -1,7 +1,7 @@
 (define-key global-map "\C-h" 'delete-backward-char)
 (define-key global-map "\M-\C-d" 'kill-word)
 (define-key global-map "\C-c\M-%" 'replace-regexp)
-(define-key global-map "\M-'" 'dabbrev-expand)
+(define-key global-map "\M-/" 'dabbrev-expand)
 
 ;; move window
 (global-set-key "\M-l" 'windmove-right)
