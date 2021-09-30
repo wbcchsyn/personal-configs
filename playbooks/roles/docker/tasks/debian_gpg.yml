@@ -1,0 +1,15 @@
+- name: Download debian gpg key
+  uri:
+    url: https://download.docker.com/linux/debian/gpg
+    return_content: yes
+  register: debian_gpg_key
+
+- name: Import debian gpg key
+  become: yes
+  command:
+    argv:
+      - gpg
+      - --dearmor
+      - -o
+      - /usr/share/keyrings/docker-archive-keyring.gpg
+    stdin: "{{ debian_gpg_key.content }}"

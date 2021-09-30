@@ -1,7 +1,21 @@
-- name: Install Packages
+- name: Check docker gpg key exist
+  stat:
+    path: /usr/share/keyrings/docker-archive-keyring.gpg
+  register: docker_gpg
+
+- name: Import docker gpg key
+  include: debian_gpg.yml
+  when: not docker_gpg.stat.exists
+
+- name: Deploy docker.list
+  become: yes
+  template:
+    src: docker.list.j2
+    dest: /etc/apt/sources.list.d/docker.list
+
+- name: Install docker
   become: yes
   apt:
-    name: ['docker.io', 'docker-compose']
+    name: ['docker-ce']
     state: present
-    cache_valid_time: 3600
     update_cache: yes
