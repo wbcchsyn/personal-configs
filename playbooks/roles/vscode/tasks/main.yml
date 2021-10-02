@@ -3,6 +3,18 @@
   command: snap install code --classic
     creates=/snap/bin/code
 
+- name: Install vacode extensions
+  become: no
+  with_items:
+    - ms-vscode-remote.remote-containers
+    - ms-vscode-remote.remote-ssh
+    - tuttieee.emacs-mcx
+  command:
+    argv:
+      - /snap/bin/code
+      - --install-extension
+      - "{{ item }}"
+
 - name: Deploy vscode setting file
   become: no
   with_items:
