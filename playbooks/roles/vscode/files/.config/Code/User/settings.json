@@ -1,4 +1,5 @@
 {
     "emacs-mcx.useMetaPrefixCtrlLeftBracket": true,
-    "emacs-mcx.strictEmacsMove": true
+    "emacs-mcx.strictEmacsMove": true,
+    "terminal.integrated.allowChords": false
 }
