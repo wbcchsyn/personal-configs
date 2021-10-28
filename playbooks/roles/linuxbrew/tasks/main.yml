@@ -1,0 +1,18 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Clone linuxbrew
+  become: no
+  git:
+      repo: 'https://github.com/Homebrew/brew'
+      clone: yes
+      depth: 1
+      dest: "{{ ansible_env.HOME }}/src/homebrew"
+      version: 3.3.1
+
+- name: Enable to use linuxbrew
+  become: no
+  lineinfile:
+      dest: "{{ ansible_env.HOME }}/.localrc"
+      line: 'eval $(src/homebrew/bin/brew shellenv)'
+      create: yes
