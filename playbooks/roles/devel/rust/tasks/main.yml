@@ -33,6 +33,12 @@
     cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup component add rustfmt"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/rustfmt"
 
+- name: Install cargo-readme
+  become: no
+  command:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo install cargo-readme"
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/cargo-readme"
+
 - name: Install rust src
   become: no
   with_items:
