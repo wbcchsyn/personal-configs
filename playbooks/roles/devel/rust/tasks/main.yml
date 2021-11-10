@@ -24,7 +24,7 @@
   become: no
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.localrc"
-    line: "env | grep 'BROWSER' || export BROWSER='firefox'"
+    line: "env | grep -q 'BROWSER' || export BROWSER='firefox'"
     create: yes
 
 - name: Install rustfmt
