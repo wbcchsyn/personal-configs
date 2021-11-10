@@ -3,7 +3,6 @@
     - default_packages
     - workspace
     - locale
-    - vim
   vars:
     locale:
       locale: en_US.UTF-8
