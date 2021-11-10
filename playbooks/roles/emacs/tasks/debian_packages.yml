@@ -1,13 +1,8 @@
 - name: Install packages.
   become: yes
   apt:
-    name: [
-      'emacs-nox',
-      'git',
-      'silversearcher-ag',
-      'silversearcher-ag-el',
-      'build-essential',
-      ]
+    name:
+      - emacs-nox
     state: present
     cache_valid_time: 3600
     update_cache: yes
