@@ -1,14 +1,18 @@
 # ssh-agent for screen
 agent="$HOME/tmp/ssh-auth-sock"
-if [ -S "$agent" ]; then
-    export SSH_AUTH_SOCK="$agent"
-elif [ -S "$SSH_AUTH_SOCK" ]; then
+if [ -n "$SSH_AGENT_PID" ]; then
     case "$SSH_AUTH_SOCK" in
         /tmp/*/agent.[0-9]*)
-            ln -snf "$SSH_AUTH_SOCK" "$agent" && export SSH_AUTH_SOCK="$agent"
+            ln -snf "$SSH_AUTH_SOCK" "$agent"
     esac
-else
-    echo "no ssh-agent"
+fi
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    if [ -S "$agent" ]; then
+        export SSH_AUTH_SOCK="$agent"
+    else
+        echo "No ssh-agent"
+    fi
 fi
 
 # Disable terminal lock
