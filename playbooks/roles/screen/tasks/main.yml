@@ -23,3 +23,9 @@
     dest={{ ansible_env.HOME }}/.local_bashrc
     line='. ~/src/{{ item }}'
     create=yes
+
+- name: Specify the path to screen socket file
+  become: no
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.localrc'
+    line: 'env | grep -q "SCREENDIR" || export SCREENDIR="$HOME/run"'
