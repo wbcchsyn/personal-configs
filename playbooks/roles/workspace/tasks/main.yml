@@ -4,3 +4,11 @@
     - src
     - tmp
   file: path={{ ansible_env.HOME }}/{{ item }} state=directory
+
+- name: Create directory for lock file
+  become: no
+  file:
+    path: '{{ ansible_env.HOME }}/run'
+    state: directory
+    mode: '0700'
+
