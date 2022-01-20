@@ -29,3 +29,4 @@
   lineinfile:
     dest: '{{ ansible_env.HOME }}/.localrc'
     line: 'env | grep -q "SCREENDIR" || export SCREENDIR="$HOME/run"'
+    create: yes
