@@ -1,0 +1,9 @@
+- include: debian_packages.yml
+  when: ansible_distribution == 'Debian'
+
+- name: Set environment variable 'BROWSER'
+  become: no
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.localrc"
+    line: "env | grep -q 'BROWSER' || export BROWSER='firefox'"
+    create: yes
