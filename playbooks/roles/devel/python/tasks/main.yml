@@ -1,13 +1,6 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
-- name: Deploy python related commands
-  become: no
-  copy:
-      src=bin
-      dest={{ ansible_env.HOME }}
-      mode=0755
-
 - name: Create virtualenv directory
   become: no
   file: path={{ ansible_env.HOME }}/.virtualenv state=directory
