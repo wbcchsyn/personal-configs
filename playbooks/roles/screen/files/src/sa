@@ -1,7 +1,12 @@
 sa() {
     (
+        eval $(ssh-agent)
+
         test -n "$VIRTUAL_ENV" && deactivate
         cd
         screen -c ~/.screenrc0
+
+        ssh-agent -k
+        rm -rf $(dirname "$SSH_AUTH_SOCK")
     )
 }
