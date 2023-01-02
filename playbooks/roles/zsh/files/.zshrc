@@ -27,5 +27,3 @@ for f in .shellrc .aliasrc .local_zshrc, .localrc; do
         . "$HOME/$f"
     fi
 done
-
-echo "$PATH" | grep -q "$HOME/zsh_bin" || PATH="$HOME/zsh_bin:$PATH"
