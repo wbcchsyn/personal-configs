@@ -1,13 +1,6 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
-- name: Deploy python related commands
-  become: no
-  copy:
-      src=bin
-      dest={{ ansible_env.HOME }}
-      mode=0755
-
 - name: Create virtualenv directory
   become: no
   file: path={{ ansible_env.HOME }}/.virtualenv state=directory
@@ -18,15 +11,16 @@
     name: [
       'wheel',
       'ipython',
-      'tox',
-      'pylint',
-      'pep8',
+      'flake8',
       'autopep8',
-      'pyflakes',
+      'autoflake',
+      'black',
+      'isort',
+      'mypy',
       'doc8',
       'pytest'
       ]
-    virtualenv_command: "{{ ansible_env.HOME }}/bin/pyvenv"
+    virtualenv_command: "python3 -m venv"
     virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
 
 - name: Set default virtualenv in .localrc
@@ -35,3 +29,8 @@
       dest={{ ansible_env.HOME }}/.localrc
       line='test -z "$VIRTUAL_ENV" && source ~/.virtualenv/python3/bin/activate'
       create=yes
+
+- name: Install pycharm
+  become: yes
+  command: snap install pycharm-community --classic
+    creates=/snap/bin/pycharm-community
