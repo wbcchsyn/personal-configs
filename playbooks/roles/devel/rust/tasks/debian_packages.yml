@@ -1,7 +1,7 @@
 - name: Install build dependencies
   become: yes
   apt:
-    name: ['curl', 'gcc', 'lldb', 'firefox-esr', 'libegl1', 'libpci3']
+    name: ['curl', 'gcc', 'lldb']
     state: present
     cache_valid_time: 3600
     update_cache: yes

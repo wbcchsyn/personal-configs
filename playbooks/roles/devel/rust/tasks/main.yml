@@ -1,9 +1,6 @@
 - include: debian_packages.yml
   when: ansible_distribution == 'Debian'
 
-- include: ubuntu_packages.yml
-  when: ansible_distribution == 'Ubuntu'
-
 - name: Download rustup installer
   become: no
   get_url:
@@ -22,13 +19,6 @@
       dest={{ ansible_env.HOME }}/.localrc
       line='. ~/.cargo/env'
       create=yes
-
-- name: Specify web browser to read cargo doc for WSL
-  become: no
-  lineinfile:
-    dest: "{{ ansible_env.HOME }}/.localrc"
-    line: "env | grep -q 'BROWSER' || export BROWSER='firefox'"
-    create: yes
 
 - name: Install rustfmt
   become: no
