@@ -27,7 +27,7 @@
       'doc8',
       'pytest'
       ]
-    virtualenv_command: "{{ ansible_env.HOME }}/bin/pyvenv"
+    virtualenv_command: "python3 -m venv"
     virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
 
 - name: Set default virtualenv in .localrc
