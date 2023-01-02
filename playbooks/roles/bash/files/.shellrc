@@ -1,20 +1,3 @@
-# ssh-agent for screen
-agent="$HOME/tmp/ssh-auth-sock"
-if [ -n "$SSH_AGENT_PID" ]; then
-    case "$SSH_AUTH_SOCK" in
-        /tmp/*/agent.[0-9]*)
-            ln -snf "$SSH_AUTH_SOCK" "$agent"
-    esac
-fi
-
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    if [ -S "$agent" ]; then
-        export SSH_AUTH_SOCK="$agent"
-    else
-        echo "No ssh-agent"
-    fi
-fi
-
 # Disable terminal lock
 stty stop undef
 
