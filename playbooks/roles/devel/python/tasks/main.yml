@@ -18,11 +18,12 @@
     name: [
       'wheel',
       'ipython',
-      'tox',
-      'pylint',
-      'pep8',
+      'flake8',
       'autopep8',
-      'pyflakes',
+      'autoflake',
+      'black',
+      'isort',
+      'mypy',
       'doc8',
       'pytest'
       ]
