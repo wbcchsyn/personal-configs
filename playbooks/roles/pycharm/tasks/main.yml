@@ -1,0 +1,4 @@
+- name: Install pycharm
+  become: yes
+  command: snap install pycharm-community --classic
+    creates=/snap/bin/pycharm-community
