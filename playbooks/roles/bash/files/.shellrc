@@ -1,5 +1,2 @@
 # Disable terminal lock
 stty stop undef
-
-# Add ~/bin to $PATH
-echo "$PATH" | grep -q "$HOME/bin" || PATH="$HOME/bin:$PATH"
