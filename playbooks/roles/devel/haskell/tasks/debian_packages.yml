@@ -1,0 +1,7 @@
+- name: Install build dependencies
+  become: yes
+  apt:
+    name: ["build-essential", "curl", "libffi-dev", "libffi7", "libgmp-dev", "libgmp10", "libncurses-dev", "libncurses5", "libtinfo5"]
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes

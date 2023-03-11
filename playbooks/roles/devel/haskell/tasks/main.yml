@@ -1,0 +1,26 @@
+- include: debian_packages.yml
+  when: ansible_distribution == 'Debian'
+
+- name: Download setup script
+  become: no
+  get_url:
+    url: https://get-ghcup.haskell.org
+    dest: "{{ ansible_env.HOME }}/src/setup_ghcup"
+
+- name: Run setup script
+  become: no
+  environment:
+    BOOTSTRAP_HASKELL_NONINTERACTIVE: 1
+    BOOTSTRAP_HASKELL_GHC_VERSION: recommended
+    BOOTSTRAP_HASKELL_CABAL_VERSION: recommended
+    BOOTSTRAP_HASKELL_INSTALL_HLS: 1
+    GHCUP_USE_XDG_DIRS: 1
+  command:
+    sh "{{ ansible_env.HOME }}/src/setup_ghcup"
+
+- name: Add command path to $PATH
+  become: no
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.localrc"
+    line: echo "$PATH" | grep -q "$HOME/.local/bin" || PATH="$HOME/.local/bin:$PATH"
+    create: yes
