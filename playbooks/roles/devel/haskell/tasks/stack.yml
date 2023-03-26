@@ -1,0 +1,17 @@
+- name: Download stack installer
+  become: no
+  get_url:
+    url: https://get.haskellstack.org/
+    dest: "{{ ansible_env.HOME }}/src/setup_stack"
+
+- name: Run stack installer
+  become: no
+  command:
+    sh "{{ ansible_env.HOME }}/src/setup_stack"
+
+- name: Add command path to $PATH
+  become: no
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.localrc"
+    line: echo "$PATH" | grep -q "$HOME/.local/bin" || export PATH="$HOME/.local/bin:$PATH"
+    create: yes
