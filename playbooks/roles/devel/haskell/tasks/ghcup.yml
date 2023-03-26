@@ -22,5 +22,5 @@
   become: no
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.localrc"
-    line: echo "$PATH" | grep -q "$HOME/.local/bin" || PATH="$HOME/.local/bin:$PATH"
+    line: echo "$PATH" | grep -q "$HOME/.local/bin" || export PATH="$HOME/.local/bin:$PATH"
     create: yes
