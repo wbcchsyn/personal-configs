@@ -1,4 +1,4 @@
-- include: debian_packages.yml
+- include: debian_packages_ghcup.yml
   when: ansible_distribution == 'Debian'
 
 - name: Download setup script
