@@ -1,13 +1,13 @@
 - include: debian_packages_ghcup.yml
   when: ansible_distribution == 'Debian'
 
-- name: Download setup script
+- name: Download ghcup installer
   become: no
   get_url:
     url: https://get-ghcup.haskell.org
     dest: "{{ ansible_env.HOME }}/src/setup_ghcup"
 
-- name: Run setup script
+- name: Run ghcup installer
   become: no
   environment:
     BOOTSTRAP_HASKELL_NONINTERACTIVE: 1
