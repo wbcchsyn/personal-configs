@@ -1,0 +1,6 @@
+- include: debian_packages.yml
+  when: ansible_distribution == 'Debian'
+
+- include: wabt.yml
+
+- include: binaryen.yml

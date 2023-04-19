@@ -1,0 +1,31 @@
+- name: Download WABT
+  become: no
+  git:
+    dest: "{{ ansible_env.HOME }}/src/wabt"
+    repo: "https://github.com/WebAssembly/wabt"
+    force: true
+
+- name: Create directory to build WABT
+  become: no
+  file:
+    path: "{{ ansible_env.HOME }}/src/wabt/build"
+    state: "directory"
+
+- name: Prepare to build WABT
+  become: no
+  command:
+    argv: ["cmake", ".."]
+    chdir: "{{ ansible_env.HOME }}/src/wabt/build"
+
+- name: Build WABT
+  become: no
+  command:
+    argv: ["cmake", "--build", ".", "-j", "{{ ansible_processor_vcpus }}"]
+    chdir: "{{ ansible_env.HOME }}/src/wabt/build"
+
+- name: Enable zsh to use WABT commands
+  become: no
+  lineinfile:
+      dest: "{{ ansible_env.HOME }}/.localrc"
+      line: 'echo $PATH | grep -q "{{ ansible_env.HOME }}/src/wabt/build" || export PATH="{{ ansible_env.HOME }}/src/wabt/build:$PATH"'
+      create: true

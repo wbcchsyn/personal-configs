@@ -1,0 +1,13 @@
+- name: Install Packages.
+  become: yes
+  apt:
+    name: [
+      'build-essential',
+      'cmake',
+      'git',
+      'python3',
+      'llvm-13'
+      ]
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes

@@ -1,0 +1,25 @@
+- name: Download Binaryen
+  become: no
+  git:
+    dest: "{{ ansible_env.HOME }}/src/binaryen"
+    repo: "https://github.com/WebAssembly/binaryen"
+    force: true
+
+- name: Prepare to build Binaryen
+  become: no
+  command:
+    argv: ["cmake", "."]
+    chdir: "{{ ansible_env.HOME }}/src/binaryen"
+
+- name: Build Binaryen
+  become: no
+  command:
+    argv: ["make", "-j", "{{ ansible_processor_vcpus }}"]
+    chdir: "{{ ansible_env.HOME }}/src/binaryen"
+
+- name: Enable zsh to use Binaryen commands
+  become: no
+  lineinfile:
+      dest: "{{ ansible_env.HOME }}/.localrc"
+      line: 'echo $PATH | grep -q "{{ ansible_env.HOME }}/src/binaryen/bin" || export PATH="{{ ansible_env.HOME }}/src/binaryen/bin:$PATH"'
+      create: true
