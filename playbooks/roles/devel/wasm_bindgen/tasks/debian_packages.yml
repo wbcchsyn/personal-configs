@@ -1,0 +1,10 @@
+- name: Install Packages.
+  become: yes
+  apt:
+    name: [
+      'pkg-config',
+      'libssl-dev'
+      ]
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes

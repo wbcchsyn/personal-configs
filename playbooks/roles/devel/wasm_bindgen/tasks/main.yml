@@ -1,0 +1,8 @@
+- include: debian_packages.yml
+  when: ansible_distribution == 'Debian'
+
+- name: Install wasm-bindgen-cli
+  become: no
+  command:
+    argv: ["{{ ansible_env.HOME }}/.cargo/bin/cargo", "install", "wasm-bindgen-cli", "-j", "{{ ansible_processor_vcpus }}"]
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/wasm-bindgen"
