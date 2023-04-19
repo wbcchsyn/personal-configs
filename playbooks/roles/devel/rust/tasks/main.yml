@@ -29,7 +29,7 @@
 - name: Install cargo-readme
   become: no
   command:
-    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo install cargo-readme"
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo install cargo-readme -j {{ ansible_processor_vcpus }}"
     creates: "{{ ansible_env.HOME }}/.cargo/bin/cargo-readme"
 
 - name: Install rust src
