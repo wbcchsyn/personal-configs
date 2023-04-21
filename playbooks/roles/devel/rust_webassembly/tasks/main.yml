@@ -6,3 +6,9 @@
   command:
     argv: ["{{ ansible_env.HOME }}/.cargo/bin/cargo", "install", "wasm-bindgen-cli", "-j", "{{ ansible_processor_vcpus }}"]
     creates: "{{ ansible_env.HOME }}/.cargo/bin/wasm-bindgen"
+
+- name: Install wasm-pack
+  become: no
+  command:
+    argv: ["{{ ansible_env.HOME }}/.cargo/bin/cargo", "install", "--git", "https://github.com/wbcchsyn/wasm-pack.git", "-j", "{{ ansible_processor_vcpus }}"]
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/wasm-pack"
