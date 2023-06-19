@@ -10,7 +10,7 @@ sb() {
             fi
         fi
 
-        session_name="$$ sb"
+        session_name="sb-$STY"
         test -n "$VIRTUAL_ENV" && deactivate
         screen -c ~/.screenrc1 -dRR "$session_name"
     )
