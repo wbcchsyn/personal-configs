@@ -1,0 +1,9 @@
+- include: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Enable rbenv in .localrc
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.localrc
+      line='eval "$(rbenv init -)"'
+      create=yes
