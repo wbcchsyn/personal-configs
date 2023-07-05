@@ -1,9 +1,9 @@
 - include: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
-- name: Create virtualenv directory
+- name: Create.venv directory
   become: no
-  file: path={{ ansible_env.HOME }}/.virtualenv state=directory
+  file: path={{ ansible_env.HOME }}/.venv state=directory
 
 - name: Install default packages for python3
   become: no
@@ -21,11 +21,11 @@
       'pytest'
       ]
     virtualenv_command: "python3 -m venv"
-    virtualenv: "{{ ansible_env.HOME }}/.virtualenv/python3"
+    virtualenv: "{{ ansible_env.HOME }}/.venv/python3"
 
 - name: Set default virtualenv in .localrc
   become: no
   lineinfile:
       dest={{ ansible_env.HOME }}/.localrc
-      line='test -z "$VIRTUAL_ENV" && source ~/.virtualenv/python3/bin/activate'
+      line='test -z "$VIRTUAL_ENV" && . ~/.venv/python3/bin/activate'
       create=yes
