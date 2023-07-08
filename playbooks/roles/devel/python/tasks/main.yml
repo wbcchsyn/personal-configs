@@ -29,3 +29,10 @@
       dest={{ ansible_env.HOME }}/.localrc
       line='test -z "$VIRTUAL_ENV" && . ~/.venv/python3/bin/activate'
       create=yes
+
+- name: Enable pipenv in virtualenv
+  become: no
+  lineinfile:
+      dest={{ ansible_env.HOME }}/.localrc
+      line='alias pipenv="PIPENV_IGNORE_VIRTUALENVS=1 pipenv"'
+      create=yes
