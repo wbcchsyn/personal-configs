@@ -1,5 +1,5 @@
-- include: ghcup.yml
+- include_tasks: ghcup.yml
   when: haskell.installer == 'ghcup'
 
-- include: stack.yml
+- include_tasks: stack.yml
   when: haskell.installer == 'stack'

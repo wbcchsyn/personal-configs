@@ -1,4 +1,4 @@
-- include: debian_packages_ghcup.yml
+- include_tasks: debian_packages_ghcup.yml
   when: ansible_distribution == 'Debian'
 
 - name: Download ghcup installer

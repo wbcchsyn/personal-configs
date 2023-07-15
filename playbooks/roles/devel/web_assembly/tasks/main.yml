@@ -1,6 +1,6 @@
-- include: debian_packages.yml
+- include_tasks: debian_packages.yml
   when: ansible_distribution == 'Debian'
 
-- include: wabt.yml
+- include_tasks: wabt.yml
 
-- include: binaryen.yml
+- include_tasks: binaryen.yml

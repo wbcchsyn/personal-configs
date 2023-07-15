@@ -1,4 +1,4 @@
-- include: debian_packages.yml
+- include_tasks: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
 - name: Create.venv directory

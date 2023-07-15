@@ -1,4 +1,4 @@
-- include: debian_packages.yml
+- include_tasks: debian_packages.yml
   when: ansible_distribution == 'Debian'
 
 - name: Download rustup installer

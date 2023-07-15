@@ -4,7 +4,7 @@
   register: docker_gpg
 
 - name: Import docker gpg key
-  include: debian_gpg.yml
+  include_tasks: debian_gpg.yml
   when: not docker_gpg.stat.exists
 
 - name: Deploy docker.list
