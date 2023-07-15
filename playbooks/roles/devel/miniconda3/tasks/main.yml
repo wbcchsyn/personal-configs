@@ -1,0 +1,37 @@
+- name: Download setup script
+  become: no
+  get_url:
+    url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    dest: "{{ ansible_env.HOME }}/src/setup_miniconda3.sh"
+
+- name: Run setup script
+  become: no
+  command:
+    argv: [sh, "{{ ansible_env.HOME }}/src/setup_miniconda3.sh", -b, -p, "{{ ansible_env.HOME }}/bin/miniconda3"]
+    creates: "{{ ansible_env.HOME }}/bin/miniconda3"
+
+- name: Initialize miniconda
+  become: no
+  command:
+    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", init]
+
+- name: Install miniconda packages
+  become: no
+  with_items:
+    - numpy
+    - pandas
+    - scikit-learn
+    - matplotlib
+    - seaborn
+    - ipython
+    - jupyter
+  command:
+    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", install, "{{ item }}"]
+
+- name: Add conda path to $PATH
+  become: no
+  lineinfile:
+      dest: "{{ ansible_env.HOME }}/.localrc"
+      line: echo "$PATH" | grep -q "miniconda3" || PATH="$HOME/bin/miniconda3/bin:$PATH"
+      create: yes
+
