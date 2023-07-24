@@ -1,3 +1,4 @@
 dependencies:
       - { role: workspace }
       - { role: firefox }
+      - { role: zsh }

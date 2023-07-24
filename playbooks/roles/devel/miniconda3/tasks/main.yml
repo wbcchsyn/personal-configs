@@ -12,8 +12,11 @@
 
 - name: Initialize miniconda
   become: no
+  with_items:
+    - bash
+    - zsh
   command:
-    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", init]
+    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", init, "{{ item }}"]
 
 - name: Install miniconda packages
   become: no
