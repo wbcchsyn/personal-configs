@@ -1,0 +1,12 @@
+#cloud-config
+
+users:
+    - default
+    - name: wbcchsyn
+      sudo: ["ALL=(ALL:ALL) NOPASSWD: ALL"]
+      ssh_authorized_keys: ["ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJTiIlS08rJd6GOpX/pWWqFdoUJkiOj1u4KOuO+FRPB4mdi4i1fSLdZv+wdzTjFnZd+AUWZTpuYueGtWvXtvJss= shin_yoshida@ShinnoMacBook-Pro.local"]
+      shell: /bin/bash
+
+packages:
+    - ansible
+    - git
