@@ -6,4 +6,4 @@
       name: wbcchsyn
       sudoer: yes
       pubkeys:
-        - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBO9dOW//t2klasxGKb2qZin74NVU8WnXekJPeCoZMiGwJDnkMWoyP7I6sKN6mP+roY1AV465u34ptHrJisya6AE= wbcch@LAPTOP-8UU35NJE
+        - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJTiIlS08rJd6GOpX/pWWqFdoUJkiOj1u4KOuO+FRPB4mdi4i1fSLdZv+wdzTjFnZd+AUWZTpuYueGtWvXtvJss= shin_yoshida@ShinnoMacBook-Pro.local
