@@ -1,18 +1,26 @@
-- name: Download setup script
+- name: Download nvm setup script
   become: no
   get_url:
-    url: https://deb.nodesource.com/setup_{{ nodejs.version }}
-    dest: "{{ ansible_env.HOME }}/src/setup_{{ nodejs.version }}"
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm.version }}/install.sh
+    dest: "{{ ansible_env.HOME }}/src/nvm_setup_{{ nvm.version }}"
 
-- name: Run setup script
-  become: yes
+- name: Run nvm setup script
+  become: no
   command:
-    bash {{ ansible_env.HOME }}/src/setup_{{ nodejs.version }}
+    bash {{ ansible_env.HOME }}/src/nvm_setup_{{ nvm.version }}
 
 - name: Install nodejs
-  become: yes
-  apt:
-    name: nodejs
-    state: present
-    cache_valid_time: 3600
-    update_cache: yes
+  become: no
+  shell:
+    . {{ ansible_env.HOME }}/.nvm/nvm.sh '&&' nvm install {{ nodejs.version }}
+
+- name: Setup nvm for zsh
+  become: no
+  with_items:
+    - export NVM_DIR="$HOME/.nvm"
+    - "[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm"
+    - "[ -s \"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\"  # This loads nvm bash_completion"
+  lineinfile:
+    create: yes
+    path: "{{ ansible_env.HOME }}/.local_zshrc"
+    line: "{{ item }}"
