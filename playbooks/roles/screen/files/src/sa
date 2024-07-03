@@ -1,12 +1,19 @@
 sa() {
     (
-        eval $(ssh-agent)
+	# Make sure to run ssh-agent
+	if [ -z "$SSH_AUTH_SOCK" ]; then
+		eval $(ssh-agent)
+		RUN_SSH_AGENT="TRUE"
+	fi
 
         test -n "$VIRTUAL_ENV" && deactivate
         cd
         screen -c ~/.screenrc0
 
-        ssh-agent -k
-        rm -rf $(dirname "$SSH_AUTH_SOCK")
+	# Kill ssh-agent if necessary
+	if [ -n "RUN_SSH_AGENT" ]; then
+		SSH_AUTH_SOCK_BACK="$SSH_AUTH_SOCK"
+		ssh-agent -k && rm -rf $(dirname "$SSH_AUTH_SOCK_BACK")
+	fi
     )
 }

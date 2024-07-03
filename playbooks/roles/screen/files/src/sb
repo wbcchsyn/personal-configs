@@ -1,6 +1,7 @@
 sb() {
 
     (
+	# Go to the directory if specified
         if [ -n "$1" ]; then
             if [ -d "$1" ]; then
                 cd "$1"
@@ -10,8 +11,20 @@ sb() {
             fi
         fi
 
+	# Make sure to run ssh-agent
+	if [ -z "$SSH_AUTH_SOCK" ]; then
+		eval $(ssh-agent)
+		RUN_SSH_AGENT="TRUE"
+	fi
+
         session_name="sb-$STY"
         test -n "$VIRTUAL_ENV" && deactivate
         screen -c ~/.screenrc1 -dRR "$session_name"
+
+	# Kill ssh-agent if necessary
+	if [ -n "RUN_SSH_AGENT" ]; then
+		SSH_AUTH_SOCK_BACK="$SSH_AUTH_SOCK"
+		ssh-agent -k && rm -rf $(dirname "$SSH_AUTH_SOCK_BACK")
+	fi
     )
 }
