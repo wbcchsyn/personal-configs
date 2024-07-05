@@ -1,17 +1,6 @@
 - include_tasks: debian_packages.yml
   when: ansible_os_family == 'Debian'
 
-- name: Create directory for docker-compose
-  file:
-    path: "{{ ansible_env.HOME }}/.docker/cli-plugins"
-    state: directory
-
-- name: Download docker-compose
-  get_url:
-    url: https://github.com/docker/compose/releases/download/v2.0.0/docker-compose-linux-amd64
-    mode: 0555
-    dest: "{{ ansible_env.HOME }}/.docker/cli-plugins/docker-compose"
-
 - name: Create /shared directory
   become: yes
   file:
