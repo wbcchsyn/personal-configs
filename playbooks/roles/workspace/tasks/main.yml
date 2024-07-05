@@ -3,6 +3,7 @@
   with_items:
     - src
     - tmp
+    - bin
   file: path={{ ansible_env.HOME }}/{{ item }} state=directory
 
 - name: Create directory for lock file
@@ -12,3 +13,9 @@
     state: directory
     mode: '0700'
 
+- name: Add HOME/bin to $PATH
+  become: no
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.localrc"
+    line: 'echo "$PATH" | grep -q "$HOME/bin" || PATH="$HOME/bin:$PATH"'
+    create: yes
