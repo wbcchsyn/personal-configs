@@ -1,0 +1,23 @@
+#!/bin/sh
+
+help() {
+    cat <<EOS >&2
+USAGE: $0 REPOSITORY TAG PATH
+
+run the following command
+    docker build --build-arg USER="$USER" \\
+		 -t <REPOSITORY>:<TAG>    \\
+		 <PATH>
+EOS
+    exit 1
+}
+
+if [ -z "$3" ]; then
+    help
+fi
+
+REPOSITORY="$1"
+TAG="$2"
+PATH="$3"
+
+/usr/bin/docker build --build-arg USER="$USER" -t $REPOSITORY:$TAG $PATH
