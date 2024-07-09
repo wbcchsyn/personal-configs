@@ -1,0 +1,3 @@
+- name: Set timezone
+  become: yes
+  command: timedatectl set-timezone Asia/Tokyo
