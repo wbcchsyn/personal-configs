@@ -17,7 +17,7 @@ sb() {
 		RUN_SSH_AGENT="TRUE"
 	fi
 
-        session_name="sb-$STY"
+        session_name="sb-$PPID-$$"
         test -n "$VIRTUAL_ENV" && deactivate
         screen -c ~/.screenrc1 -dRR "$session_name"
 
