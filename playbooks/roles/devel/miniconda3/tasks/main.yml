@@ -29,7 +29,7 @@
     - ipython
     - jupyter
   command:
-    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", install, "{{ item }}"]
+    argv: ["{{ ansible_env.HOME }}/bin/miniconda3/bin/conda", install, -y, "{{ item }}"]
 
 - name: Add conda path to $PATH
   become: no
