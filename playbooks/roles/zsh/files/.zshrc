@@ -17,7 +17,8 @@ precmd () {
     vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
-PROMPT="%n@%F{red}%m%F{default}:%~%1(v|%F{green}%1v%f|)%F{default}%# "
+PROMPT="%B%U%n@%F{red}%m%f:%~%1(v|%F{green}%1v%f|)%f%#%u%b "
+zle_highlight=(default:bold)
 
 for f in .shellrc .aliasrc .local_zshrc .localrc; do
     if [ -f "$HOME/$f" ]; then
