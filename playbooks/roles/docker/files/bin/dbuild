@@ -2,22 +2,21 @@
 
 help() {
     cat <<EOS >&2
-USAGE: $0 REPOSITORY TAG PATH
+USAGE: $0 TAG PATH
 
 run the following command
     docker build --build-arg USER="$USER" \\
-		 -t <REPOSITORY>:<TAG>    \\
+		 -t <TAG>                 \\
 		 <PATH>
 EOS
     exit 1
 }
 
-if [ -z "$3" ]; then
+if [ -z "$2" ]; then
     help
 fi
 
-REPOSITORY="$1"
-TAG="$2"
-PATH="$3"
+TAG="$1"
+PATH="$2"
 
-/usr/bin/docker build --build-arg USER="$USER" -t $REPOSITORY:$TAG $PATH
+/usr/bin/docker build --build-arg USER="$USER" -t $TAG $PATH

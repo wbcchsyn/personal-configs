@@ -1,0 +1,18 @@
+#!/bin/sh
+
+help() {
+    cat <<EOS >&2
+USAGE: $0 <Container>
+
+Run the following command
+docker exec -it -u `id -un` <Container> /bin/sh
+EOS
+    exit 1
+}
+
+if [ -z "$1" ]; then
+    help
+fi
+
+HOST="$1"
+docker exec -it -u `id -un` "$HOST" /bin/sh
