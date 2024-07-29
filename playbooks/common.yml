@@ -1,7 +1,6 @@
 - hosts: all
   roles:
     - default_packages
-    - workspace
     - locale
   vars:
     locale:
