@@ -12,9 +12,7 @@
       'info',
       'man',
       'manpages',
-      'manpages-dev',
-      'apt-transport-https',
-      'pandoc'
+      'manpages-dev'
       ]
     state: present
     cache_valid_time: 3600
