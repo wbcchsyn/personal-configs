@@ -8,5 +8,4 @@ users:
       shell: /bin/bash
 
 packages:
-    - ansible
-    - git
+    - python3-apt
