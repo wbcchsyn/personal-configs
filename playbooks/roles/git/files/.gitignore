@@ -13,3 +13,4 @@ GSYMS
 *.vscode
 core
 .devcontainer
+*.egg-info
