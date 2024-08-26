@@ -1,0 +1,20 @@
+- include_tasks: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Deploy the config file
+  become: yes
+  copy:
+    src: neo4j.conf
+    dest: /etc/neo4j/neo4j.conf
+
+- name: Install `apoc` plugin
+  become: yes
+  shell:
+    cmd: cp /var/lib/neo4j/labs/apoc*.jar /var/lib/neo4j/plugins
+
+- name: Display post install message
+  become: no
+  debug:
+    msg: |
+        Access to http://<hostname>:7474/ via browser to change the password.
+        The initial Username/Password is neo4j/neo4j

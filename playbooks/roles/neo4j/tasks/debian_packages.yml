@@ -1,0 +1,24 @@
+- name: Make sure directory keyrings is
+  become: yes
+  file:
+    path: /usr/local/share/keyrings
+    mode: 0755
+    state: directory
+- name: Download the gpg key of neotechnology
+  become: yes
+  get_url:
+    url: https://debian.neo4j.com/neotechnology.gpg.key
+    dest: /usr/local/share/keyrings/neotechnology.gpg.asc
+- name: Add the neotechnology repository
+  become: yes
+  apt_repository:
+    repo: deb [signed-by=/usr/local/share/keyrings/neotechnology.gpg.asc] https://debian.neo4j.com stable latest
+    state: present
+
+- name: Install neo4j
+  become: yes
+  apt:
+    name:
+      - neo4j
+    state: present
+    update_cache: yes
