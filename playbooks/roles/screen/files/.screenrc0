@@ -1,5 +1,6 @@
 escape ^Zz
 caption splitonly "%?%F%{= bw}%:%{= yr}%? "
-hardstatus alwayslastline "%{=b yr}%Y/%m/%d %c:%s    %-w%{=b bw}%n %t%{=b yr}%+w%="
+hardstatus alwayslastline "%{=b yr}%Y/%m/%d %c:%s    %-w%{=b bw}%n %t%{=b yr}%+w %{=b yr}%="
+shell -bash
 
 source ~/.screenrc_common
