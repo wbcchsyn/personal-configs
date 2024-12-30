@@ -1,3 +1,6 @@
 - hosts: all
   roles:
       - emacs
+  vars:
+    emacs:
+      version: 29.4
