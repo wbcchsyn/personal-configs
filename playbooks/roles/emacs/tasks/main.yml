@@ -15,9 +15,6 @@
       - (load "~/.emacs.d/init.d/backup")
       - (load "~/.emacs.d/init.d/key-bind")
       - (load "~/.emacs.d/init.d/display")
-      - (load "~/.emacs.d/init.d/daemon")
-      - (load "~/.emacs.d/init.d/resize-window")
-      - (load "~/.emacs.d/init.d/format")
   lineinfile:
       dest={{ ansible_env.HOME }}/.emacs.d/loads.el
       line={{ item }}

@@ -1,5 +1,3 @@
-;(load "~/.emacs.d/init.d/el-get")
-; (package-initialize)
-;(load "~/.emacs.d/init.d/flycheck")
+(package-initialize)
 (load "~/.emacs.d/loads")
 
