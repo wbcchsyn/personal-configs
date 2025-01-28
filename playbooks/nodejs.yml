@@ -3,6 +3,6 @@
     - devel/nodejs
   vars:
     nodejs:
-      version: v18.15.0
+      version: --lts
     nvm:
-      version: v0.39.4
+      version: v0.40.1
