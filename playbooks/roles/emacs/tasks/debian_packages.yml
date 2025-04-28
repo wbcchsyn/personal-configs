@@ -2,11 +2,7 @@
   become: yes
   apt:
     name:
-      - build-essential
-      - pkg-config
-      - libgnutls28-dev
-      - libtinfo-dev
-      - texinfo
+      - emacs-nox
     state: present
     cache_valid_time: 3600
     update_cache: yes

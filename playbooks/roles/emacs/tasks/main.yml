@@ -9,8 +9,6 @@
       src={{ item }}
       dest={{ ansible_env.HOME }}
 
-- include_tasks: build_emacs.yml
-
 - name: Load personal settings from init.el
   become: no
   with_items:
