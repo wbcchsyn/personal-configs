@@ -7,8 +7,6 @@
       - libgnutls28-dev
       - libtinfo-dev
       - texinfo
-      - nodejs
-      - npm
     state: present
     cache_valid_time: 3600
     update_cache: yes
