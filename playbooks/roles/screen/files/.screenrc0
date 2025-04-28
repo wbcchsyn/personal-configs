@@ -1,4 +1,4 @@
-escape ^Qq
+escape ^\\\
 caption splitonly "%?%F%{= bw}%:%{= yr}%? "
 hardstatus alwayslastline "%{=b yr}%Y/%m/%d %c:%s    %-w%{=b bw}%n %t%{=b yr}%+w %{=b yr}%="
 shell -bash

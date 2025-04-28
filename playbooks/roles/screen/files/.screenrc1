@@ -1,4 +1,4 @@
-escape ^Zz
+escape ^__
 caption splitonly "%?%F%{=b mw}%:%{= bw}%?%n %t"
 hardstatus alwayslastline "%{=b bw}%H    %-w %{=b mw}%n %t%{=b bw}%+w %{=b bw}%="
 shell -zsh
