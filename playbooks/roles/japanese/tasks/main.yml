@@ -7,6 +7,12 @@
       src=.emacs.d
       dest={{ ansible_env.HOME }}
 
+- name: Make sure to create directory ~/.config
+  become: no
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+
 - name: Make emacs load languages.el
   become: no
   lineinfile:
