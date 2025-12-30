@@ -1,0 +1,14 @@
+- include_tasks: debian_packages.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Download AWS CLI zip file
+  become: no
+  get_url:
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    dest: "{{ ansible_env.HOME }}/src/awscli-exe-linux-x86_64.zip"
+
+- name: Unarchive AWS CLI installer
+  become: no
+  unarchive:
+    src: "{{ ansible_env.HOME }}/src/awscli-exe-linux-x86_64.zip"
+    dest: "{{ ansible_env.HOME }}/src"

@@ -1,0 +1,7 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name: ['groff']
+    state: present
+    cache_valid_time: 3600
+    update_cache: yes
