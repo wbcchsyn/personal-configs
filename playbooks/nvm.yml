@@ -1,8 +1,6 @@
 - hosts: all
   roles:
-    - devel/nodejs
+    - devel/nvm
   vars:
-    nodejs:
-      version: --lts
     nvm:
       version: v0.40.1
