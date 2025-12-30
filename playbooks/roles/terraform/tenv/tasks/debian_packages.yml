@@ -1,0 +1,23 @@
+- name: Get tenv latest release metadata from GitHub API
+  become: no
+  uri:
+    url: https://api.github.com/repos/tofuutils/tenv/releases/latest
+    return_content: yes
+  register: terraform_tenv_metadata
+
+- name: Extract tenv version tag
+  become: no
+  set_fact:
+    terraform_cosign_version: "{{ terraform_tenv_metadata.json.tag_name }}"
+
+- name: Download tenv .deb package
+  become: no
+  get_url:
+    url: "https://github.com/tofuutils/tenv/releases/latest/download/tenv_{{ terraform_cosign_version }}_amd64.deb"
+    dest: "{{ ansible_env.HOME }}/src/tenv_{{ terraform_cosign_version }}_amd64.deb"
+
+- name: Install tenv package
+  become: yes
+  apt:
+    deb: "{{ ansible_env.HOME }}/src/tenv_{{ terraform_cosign_version }}_amd64.deb"
+    state: present
