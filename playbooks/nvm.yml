@@ -2,7 +2,5 @@
   roles:
     - devel/nodejs
   vars:
-    nodejs:
-      version: --lts
     nvm:
       version: v0.40.1
