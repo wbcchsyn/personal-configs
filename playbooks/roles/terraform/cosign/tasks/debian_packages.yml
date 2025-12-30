@@ -1,0 +1,23 @@
+- name: Get Cosign latest release metadata from GitHub API
+  become: no
+  uri:
+    url: https://api.github.com/repos/sigstore/cosign/releases/latest
+    return_content: yes
+  register: terraform_cosign_metadata
+
+- name: Extract Cosign version tag
+  become: no
+  set_fact:
+    terraform_cosign_version: "{{ terraform_cosign_metadata.json.tag_name | replace('v', '') }}"
+
+- name: Download Cosign .deb package
+  become: no
+  get_url:
+    url: "https://github.com/sigstore/cosign/releases/latest/download/cosign_{{ terraform_cosign_version }}_amd64.deb"
+    dest: "{{ ansible_env.HOME }}/src/cosign_{{ terraform_cosign_version }}_amd64.deb"
+
+- name: Install Cosign package
+  become: yes
+  apt:
+    deb: "{{ ansible_env.HOME }}/src/cosign_{{ terraform_cosign_version }}_amd64.deb"
+    state: present
