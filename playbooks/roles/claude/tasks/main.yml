@@ -1,0 +1,17 @@
+- name: Download claude setup script
+  become: no
+  get_url:
+    url: https://claude.ai/install.sh
+    dest: "{{ ansible_env.HOME }}/src/install_claude.sh"
+
+- name: Run claude setup script
+  become: no
+  command:
+    bash {{ ansible_env.HOME }}/src/install_claude.sh
+
+- name: Setup claude for zsh
+  become: no
+  lineinfile:
+    create: yes
+    path: "{{ ansible_env.HOME }}/.local_zshrc"
+    line: 'export PATH="$HOME/.local/bin:$PATH"'
